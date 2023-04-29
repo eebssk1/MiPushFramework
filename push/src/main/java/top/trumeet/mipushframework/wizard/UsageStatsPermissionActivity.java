@@ -29,7 +29,8 @@ public class UsageStatsPermissionActivity extends PushControllerWizardActivity i
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        check();
+        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M) || allow) {
             nextPage();
             finish();
             return;
@@ -81,6 +82,7 @@ public class UsageStatsPermissionActivity extends PushControllerWizardActivity i
 
     @Override
     public void onNavigateNext() {
+        check();
         if (!allow) {
             if (!nextClicked || !PermissionUtils.canAppOpsPermission()) {
                 nextClicked = true;

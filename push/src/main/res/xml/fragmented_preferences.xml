@@ -15,6 +15,11 @@
             android:summary="@string/settings_clear_log_summary"
             android:title="@string/settings_clear_log" />
 
+        <Preference
+                android:key="clear_all"
+                android:summary="@string/settings_clear_all_summary"
+                android:title="@string/settings_clear_all" />
+
 
     </PreferenceCategory>
 

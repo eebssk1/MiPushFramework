@@ -30,7 +30,8 @@ public class AlertWindowPermissionActivity extends PushControllerWizardActivity 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        check();
+        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.M) || allow) {
             nextPage();
             finish();
             return;

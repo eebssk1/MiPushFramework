@@ -81,14 +81,11 @@ public final class MyMigrationHelper {
             }
             try {
                 tempTableName = daoConfig.tablename.concat("_TEMP");
-                StringBuilder dropTableStringBuilder = new StringBuilder();
-                dropTableStringBuilder.append("DROP TABLE IF EXISTS ").append(tempTableName).append(";");
-                db.execSQL(dropTableStringBuilder.toString());
+                db.execSQL("DROP TABLE IF EXISTS " + tempTableName + ";");
 
-                StringBuilder insertTableStringBuilder = new StringBuilder();
-                insertTableStringBuilder.append("CREATE TEMPORARY TABLE ").append(tempTableName);
-                insertTableStringBuilder.append(" AS SELECT * FROM ").append(tableName).append(";");
-                db.execSQL(insertTableStringBuilder.toString());
+                String insertTableStringBuilder = "CREATE TEMPORARY TABLE " + tempTableName +
+                        " AS SELECT * FROM " + tableName + ";";
+                db.execSQL(insertTableStringBuilder);
                 printLog("【Table】" + tableName +"\n ---Columns-->"+getColumnsStr(daoConfig));
                 printLog("【Generate temp table】" + tempTableName);
             } catch (SQLException e) {
@@ -215,18 +212,15 @@ public final class MyMigrationHelper {
                     final String columnSQLNew = TextUtils.join(",", propertiesNew);
 
 
-                    StringBuilder insertTableStringBuilder = new StringBuilder();
-                    insertTableStringBuilder.append("INSERT INTO ").append(tableName).append(" (");
-                    insertTableStringBuilder.append(columnSQLNew);
-                    insertTableStringBuilder.append(") SELECT ");
-                    insertTableStringBuilder.append(columnSQL);
-                    insertTableStringBuilder.append(" FROM ").append(tempTableName).append(";");
-                    db.execSQL(insertTableStringBuilder.toString());
+                    String insertTableStringBuilder = "INSERT INTO " + tableName + " (" +
+                            columnSQLNew +
+                            ") SELECT " +
+                            columnSQL +
+                            " FROM " + tempTableName + ";";
+                    db.execSQL(insertTableStringBuilder);
                     printLog("【Restore data】 to " + tableName);
                 }
-                StringBuilder dropTableStringBuilder = new StringBuilder();
-                dropTableStringBuilder.append("DROP TABLE ").append(tempTableName);
-                db.execSQL(dropTableStringBuilder.toString());
+                db.execSQL("DROP TABLE " + tempTableName);
                 printLog("【Drop temp table】" + tempTableName);
             } catch (SQLException e) {
                 Log.e(TAG, "【Failed to restore data from temp table 】" + tempTableName, e);

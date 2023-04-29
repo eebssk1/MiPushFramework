@@ -43,7 +43,7 @@ public class RegisteredApplication implements Parcelable {
     private String packageName;
 
     @Type
-    private int type = Type.ASK;
+    private int type = Type.ALLOW;
 
     private boolean allowReceivePush;
 

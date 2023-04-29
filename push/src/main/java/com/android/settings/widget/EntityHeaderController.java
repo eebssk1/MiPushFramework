@@ -339,7 +339,6 @@ public class EntityHeaderController {
             }
             case ActionType.ACTION_NONE: {
                 button.setVisibility(View.GONE);
-                return;
             }
         }
     }

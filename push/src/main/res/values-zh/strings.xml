@@ -63,6 +63,9 @@
     <string name="settings_clear_log">清空日志</string>
 
     <string name="settings_clear_log_summary">清空日志文件</string>
+
+    <string name="settings_clear_all">清除所有数据</string>
+    <string name="settings_clear_all_summary">清除数据并重置自身</string>
     <string name="accessibility_desc">前台应用检测模式-辅助模式，相比默认模式有更高的兼容性，但性能较差。如果使用未遇到问题，无需开启。</string>
     <string name="settings_auto_register">自动注册应用</string>
     <string name="settings_options">配置</string>

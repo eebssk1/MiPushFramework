@@ -666,7 +666,7 @@ public class MyMIPushNotificationHelper {
         if (metaExtra == null || (intent = getPendingIntentFromExtra(context, pkgName, place, metaExtra)) == null) {
             return null;
         }
-        return PendingIntent.getActivity(context, 0, intent, 0);
+        return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_MUTABLE);
     }
 
     private static Intent getPendingIntentFromExtra(Context context, String pkgName, int place, Map<String, String> extra) {

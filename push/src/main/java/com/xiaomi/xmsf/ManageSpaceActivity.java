@@ -1,5 +1,7 @@
 package com.xiaomi.xmsf;
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import com.catchingnow.icebox.sdk_client.IceBox;
@@ -78,7 +81,11 @@ public class ManageSpaceActivity extends PreferenceActivity {
                 Toast.makeText(context, getString(R.string.settings_clear_log) + getString(R.string.end), Toast.LENGTH_SHORT).show();
                 return true;
             });
-
+            getPreferenceScreen().findPreference("clear_all").setOnPreferenceClickListener(preference -> {
+                boolean res = ((ActivityManager)context.getSystemService(ACTIVITY_SERVICE)).clearApplicationUserData();
+                if(res) ((Activity)(context)).finishAndRemoveTask();
+                return true;
+            });
 
             getPreferenceScreen().findPreference("mock_notification").setOnPreferenceClickListener(preference -> {
                 String packageName = BuildConfig.APPLICATION_ID;

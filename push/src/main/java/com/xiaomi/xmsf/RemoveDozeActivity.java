@@ -53,10 +53,11 @@ public class RemoveDozeActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case RC_REQUEST:
                 setResultAndFinish(PushServiceAccessibility.isInDozeWhiteList(this) ?
-                Activity.RESULT_OK : Activity.RESULT_CANCELED);
+                        Activity.RESULT_OK : Activity.RESULT_CANCELED);
                 break;
         }
     }

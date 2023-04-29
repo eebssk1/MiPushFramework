@@ -46,6 +46,9 @@
     <string name="settings_clear_log">Clear logs</string>
     <string name="settings_clear_log_summary">Delete logs file.</string>
 
+    <string name="settings_clear_all">Clear all data</string>
+    <string name="settings_clear_all_summary">Reset self to default and delete all data</string>
+
 
     <string name="settings_auto_register">Automatic registers</string>
 

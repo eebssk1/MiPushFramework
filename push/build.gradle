@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 allprojects {
     repositories {
         mavenCentral()
+        jcenter()
         maven { url 'https://jitpack.io' }
     }
 }
@@ -77,8 +78,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     lintOptions {
         checkReleaseBuilds false
@@ -114,7 +115,7 @@ dependencies {
     implementation project(':condom')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation project(':provider')
-    implementation 'androidx.palette:palette:1.0.0'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
 
     implementation 'com.github.heruoxin:IceBox-SDK:55dd857d74'
 
@@ -143,10 +144,10 @@ dependencies {
         exclude group: 'com.android.support'
     })
 
-    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     // https://mvnrepository.com/artifact/com.github.promeg/tinypinyin
-    implementation 'com.github.promeg:tinypinyin:2.0.3'
+    implementation 'com.github.promeg:tinypinyin:3.0.0'
 
 
 }

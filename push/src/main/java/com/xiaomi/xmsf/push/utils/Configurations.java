@@ -45,7 +45,7 @@ public class Configurations {
     private String version;
     private Map<String, List<Object>> packageConfigs = new HashMap<>();
 
-    private static Configurations instance = null;
+    private static volatile Configurations instance = null;
     private Context mContext = null;
     private Uri mTreeUri = null;
     private DocumentFile mDocumentFile = null;

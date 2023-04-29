@@ -27,7 +27,9 @@ public class CheckRunInBackgroundActivity extends PushControllerWizardActivity i
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N || !PermissionUtils.canAppOpsPermission()) {
+        int result = Utils.checkOp(this, AppOpsManagerOverride.OP_RUN_IN_BACKGROUND);
+        allow = (result != AppOpsManager.MODE_IGNORED);
+        if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.N || !PermissionUtils.canAppOpsPermission()) || allow) {
             nextPage();
             finish();
             return;
@@ -55,7 +57,6 @@ public class CheckRunInBackgroundActivity extends PushControllerWizardActivity i
         if (allow) {
             nextPage();
             finish();
-            return;
         }
 
     }

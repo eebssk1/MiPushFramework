@@ -87,11 +87,21 @@ private const val TIMEOUT_DEBUG = 5 * 60_000
         fun restoreNotificationsAsync(restrictedContext: Context) {
             val context = restrictedContext.applicationContext
             val retriever = buildBackupIntent(context)
-            if (PendingIntent.getBroadcast(context, BACKUP_VERSION - 1, retriever, FLAG_NO_CREATE) != null)
+            if (PendingIntent.getBroadcast(
+                    context,
+                    BACKUP_VERSION - 1,
+                    retriever,
+                    FLAG_NO_CREATE or PendingIntent.FLAG_MUTABLE
+                ) != null)
                 return Unit.also { Log.w(TAG, "Ignore incompatible backup created by old version.") }
             var i = 0
             while (true) {
-                (PendingIntent.getBroadcast(context, BACKUP_VERSION + i, retriever, FLAG_NO_CREATE) ?: break)
+                (PendingIntent.getBroadcast(
+                    context,
+                    BACKUP_VERSION + i,
+                    retriever,
+                    FLAG_NO_CREATE or PendingIntent.FLAG_MUTABLE
+                ) ?: break)
                         .send(context, i, Intent().putExtra(EXTRA_INDEX, i), { pi, payload, index, _, _ ->
                             val sbn = payload.getParcelableExtra<StatusBarNotification>(null)
                             if (sbn != null) try {

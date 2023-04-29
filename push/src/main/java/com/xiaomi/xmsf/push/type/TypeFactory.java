@@ -59,8 +59,6 @@ public class TypeFactory {
             case Command:
                 break;
             case SendMessage:
-                return new NotificationType(info, pkg, buildContainer.getMetaInfo().getTitle(),
-                        buildContainer.getMetaInfo().getDescription(), payload);
             case Notification:
                 return new NotificationType(info, pkg, buildContainer.getMetaInfo().getTitle(),
                         buildContainer.getMetaInfo().getDescription(), payload);

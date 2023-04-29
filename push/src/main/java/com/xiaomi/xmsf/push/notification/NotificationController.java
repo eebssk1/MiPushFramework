@@ -380,18 +380,17 @@ public class NotificationController {
             IconCompat iconCache = IconCache.getInstance().getIconCache(context, packageName, (ctx, b) -> IconCompat.createWithBitmap(b));
             if (iconCache != null) {
                 notificationBuilder.setSmallIcon(iconCache);
-                return;
             }
         }
     }
 
     public static void buildExtraSubText(Context context, String packageName, NotificationCompat.Builder localBuilder, CharSequence text) {
-        if ("".equals(text)) {
-            localBuilder.setSubText(null);
-            return;
-        }
         if (text == null) {
             text = ApplicationNameCache.getInstance().getAppName(context, packageName);
+        }
+        if (text.toString().isBlank()) {
+            localBuilder.setSubText(null);
+            return;
         }
         int color = localBuilder.getColor();
         if (color == Notification.COLOR_DEFAULT) {

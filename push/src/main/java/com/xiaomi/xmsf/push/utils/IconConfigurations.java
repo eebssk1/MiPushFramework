@@ -61,7 +61,7 @@ public class IconConfigurations {
 
     private Map<String, IconConfig> iconConfigs = new HashMap<>();
 
-    private static IconConfigurations instance = null;
+    private static volatile IconConfigurations instance = null;
 
     public static IconConfigurations getInstance() {
         if (instance == null) {

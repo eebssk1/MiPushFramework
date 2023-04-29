@@ -74,11 +74,10 @@ public class DatabaseUtils {
 
     @NonNull
     public static String order (@NonNull String column, @NonNull String order) {
-        StringBuilder builder = new StringBuilder();
-        return builder.append(column)
-                .append(" ")
-                .append(order)
-                .toString();
+        String builder = column +
+                " " +
+                order;
+        return builder;
     }
 
     @NonNull
